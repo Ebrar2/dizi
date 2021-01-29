@@ -1,37 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-void eleme(int n,int d[]);
-
+int kacTaneVar(int d[],int n,int e[],int n2);
 int main()
 {
-    int n=10,i,d[n];
-    printf("Dizinin elemanlarini giriniz:\n");
-    for(i=0;i<n;i++)
-    {
-        scanf("%d",&d[i]);
-    }
-    eleme(n,d);
-    printf("\n------------------------------------------------\n");
-    printf("\nDizinin son hali:");
-    for(i=0;i<n;i++)
-    {
-        printf("%3d,",d[i]);
-    }
+    int d[7]={3,12,11,12,7,3,12};
+    int e[3]={3,12,41};
+
+    printf("Sonuc:%d",kacTaneVar(d,7,e,3));
     return 0;
 }
-void eleme(int n,int d[])
+
+int kacTaneVar(int d[],int n,int e[],int n2)
 {
-    int x,a[n];
-    for(x=0;x<n;x++)
-        a[x]=d[x];
-    for(x=0;x<n;x++)
+    int i,j,gec=0;
+    for(i=0;i<n2;i++)
     {
-        for(int y=x+1;y<n;y++)
+        int kont=0;
+         for(j=0;j<n;j++)
         {
-            if(a[y]==a[x])
-              {
-                d[y]=-1;
-                d[x]=-1;
-        }
+        if(e[i]==d[i])
+         kont++;}
+
+         if(kont!=0)
+            gec++;
+
     }
-}}
+    return gec;
+}
