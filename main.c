@@ -1,26 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
-int ilkBenzersiz(int d[],int n);
+void yuzeTam(int d[],int n);
+
 int main()
 {
-    int d[7]={3,12,1,12,7,3,12};
-    printf("Dizinin ilk benzersizi:%d",ilkBenzersiz(d,7));
+    int d[10],i;
+    printf("Notlari giriniz(20 tane):\n");
+    for(i=0;i<10;i++)
+    {
+        scanf("%d",&d[i]);
+    }
+    printf("\nNotlarin arttirilmis hali\n");
+    yuzeTam(d,10);
+    for(i=0;i<10;i++)
+        printf("%3d,",d[i]);
+
     return 0;
 }
-int ilkBenzersiz(int d[],int n)
+
+void yuzeTam(int d[],int n)
 {
-    int i,j,kont=0,ben=d[0];
+    int i,x,enbuyuk=d[0];
+
     for(i=0;i<n;i++)
     {
-        kont=0;
-        for(j=0;j<n;j++)
-         { if(d[i]!=d[j])
-          kont++;
+        if(enbuyuk<d[i])
+            enbuyuk=d[i];
     }
-    if(kont==n-1)
-        return d[i];
+    x=(100-enbuyuk);
+    for(i=0;i<n;i++)
+    {
+        d[i]=d[i]+d[i]*x/enbuyuk;
     }
-    if(kont!=n-1)
-        return -1;
 
 }
