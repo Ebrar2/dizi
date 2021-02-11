@@ -1,49 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<time.h>
 int main()
 {
-    int d[9][9]={0},i,j,x,say=0,e=0,num=1;
-    int a[9],kont=0;
-    while(say<9)
+    int d[7][7]={0},i,j,x,e=0,say=0,kont=0;
+    int a[7],sira=1;
+    srand(time(NULL));
+    while(say<7)
     {
-      x=rand()%9;
-       if(say==0)
-         {
-        a[e]=x;
-        e++;
-        say++;
-    }
-       else
-       {
-           kont=0;
-           for(i=0;i<say;i++)
-           {
-               if(a[i]==x)
-                kont++;
-           }
-         if(kont==0)
-         {
-             a[e]=x;
-             e++;
-             say++;
-         }
-       }
-    }
-    for(i=0;i<9;i++)
-    {
-        for(j=9;j>-1;j--)
+        if(say==0)
+            {
+                a[e]=rand()%8;
+                say++;
+                e++;}
+        else
         {
-            if(a[i]!=1 && a[i]!=4 &&  a[i]!=7)
-              {d[a[i]][a[j]]=num;
-              num++;
-    }}}
-     for(i=0;i<9;i++)
+            kont=0;
+            x=rand()%8;
+            for(i=0;i<e;i++)
+              {
+                  if(a[i]==x)
+                    kont++;
+              }
+            if(kont==0)
+                {
+                     a[e]=x;
+                     e++;
+                     say++;
+                }
+        }
+    }
+    for(i=0;i<7;i++)
     {
-        printf("%d.satir:",i);
-        for(j=0;j<9;j++)
+        for(j=6;j>-1;j--)
+          {
+           d[a[i]][a[j]]=sira;
+           sira++;}
+    }
+    for(i=0;i<7;i++)
+    {
+        for(j=0;j<7;j++)
             printf("%3d",d[i][j]);
-    printf("\n");
+     printf("\n");
     }
     return 0;
 }
