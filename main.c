@@ -3,45 +3,25 @@
 #include<time.h>
 int main()
 {
-    int d[7][7]={0},i,j,x,e=0,say=0,kont=0;
-    int a[7],sira=1;
+    int x,tahmin;
     srand(time(NULL));
-    while(say<7)
+    x=1+rand()%100;
+    printf("Bilgisayr 1-100 arasi bir sayi tutmusur");
+    printf("\nSiz tahminlerinizi girerek bilgisayarin yonlendirmesiyle sayiyi bulabilecekmisiniz?\n");
+    do
     {
-        if(say==0)
-            {
-                a[e]=rand()%8;
-                say++;
-                e++;}
-        else
+        printf("\nTahmininizi giriniz:");
+        scanf("%d",&tahmin);
+        if(tahmin==x)
         {
-            kont=0;
-            x=rand()%8;
-            for(i=0;i<e;i++)
-              {
-                  if(a[i]==x)
-                    kont++;
-              }
-            if(kont==0)
-                {
-                     a[e]=x;
-                     e++;
-                     say++;
-                }
+            printf("\nDogru tahmin");
+            break;
         }
+        else if(tahmin>x)
+            printf("\nAsagi Asagi!");
+        else
+            printf("\nYukari Yukari!");
     }
-    for(i=0;i<7;i++)
-    {
-        for(j=6;j>-1;j--)
-          {
-           d[a[i]][a[j]]=sira;
-           sira++;}
-    }
-    for(i=0;i<7;i++)
-    {
-        for(j=0;j<7;j++)
-            printf("%3d",d[i][j]);
-     printf("\n");
-    }
+    while(tahmin!=x);
     return 0;
 }
