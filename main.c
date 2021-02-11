@@ -1,36 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
-void yuzeTam(int d[],int n);
 
 int main()
 {
-    int d[10],i;
-    printf("Notlari giriniz(20 tane):\n");
+    int d[10],i,say=1,j,gec,gec2;
+    int a[10];
+    printf("Dizinin elemanlarini giriniz:\n");
     for(i=0;i<10;i++)
-    {
         scanf("%d",&d[i]);
-    }
-    printf("\nNotlarin arttirilmis hali\n");
-    yuzeTam(d,10);
     for(i=0;i<10;i++)
-        printf("%3d,",d[i]);
-
+    {
+       say=1;
+       for(j=0;j<10;j++)
+       {
+           if(j!=i)
+           {
+           if(d[i]==d[j])
+              say++;
+           }
+       }
+       a[i]=say;
+    }
+    int b[10];
+    for(i=0;i<10;i++)
+        {
+        printf("%3d",a[i]);
+        b[i]=i;
+        }
+      for(i=0;i<10;i++)
+    {
+       for(j=0;j<9;j++)
+       {
+           if(a[j+1]<a[j])
+           {
+            gec=a[j];
+            a[j]=a[j+1];
+            a[j+1]=gec;
+            gec2=b[j+1];
+            b[j+1]=b[j];
+            b[j]=gec2;
+           }
+    }}
+    printf("\nDizinin siralanmis hali:\n");
+    for(i=0;i<10;i++)
+        printf("%3d",d[b[i]]);
     return 0;
-}
-
-void yuzeTam(int d[],int n)
-{
-    int i,x,enbuyuk=d[0];
-
-    for(i=0;i<n;i++)
-    {
-        if(enbuyuk<d[i])
-            enbuyuk=d[i];
-    }
-    x=(100-enbuyuk);
-    for(i=0;i<n;i++)
-    {
-        d[i]=d[i]+d[i]*x/enbuyuk;
-    }
-
 }
