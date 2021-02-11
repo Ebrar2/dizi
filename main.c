@@ -1,27 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
+
 int main()
 {
-    int x,tahmin;
-    srand(time(NULL));
-    x=1+rand()%100;
-    printf("Bilgisayr 1-100 arasi bir sayi tutmusur");
-    printf("\nSiz tahminlerinizi girerek bilgisayarin yonlendirmesiyle sayiyi bulabilecekmisiniz?\n");
-    do
+    int a[3][3],i,j;
+    printf("Dizinin Elemanlari\n");
+    for(i=0;i<3;i++)
     {
-        printf("\nTahmininizi giriniz:");
-        scanf("%d",&tahmin);
-        if(tahmin==x)
-        {
-            printf("\nDogru tahmin");
-            break;
-        }
-        else if(tahmin>x)
-            printf("\nAsagi Asagi!");
-        else
-            printf("\nYukari Yukari!");
+        printf("\na dizisinin %d.satiri:",i+1);
+        for(j=0;j<3;j++)
+            scanf("%d",&a[i][j]);
     }
-    while(tahmin!=x);
+    printf("\n-------------------------------------------------\n");
+    for(j=0;j<3;j++)
+    {
+        for(i=0;i<3;i++)
+          printf("%3d",a[i][j]);
+      printf("\n");
+    }
     return 0;
 }
