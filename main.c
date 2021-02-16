@@ -3,12 +3,20 @@
 
 int main()
 {
-    int i,top=0,kareTop=0;
-    for(i=1;i<=100;i++)
+    int i,x=1,j,kont=0;
+    for(i=1;i<20;i++)
+        x=x*i;
+    for(i=x; ;i++)
     {
-        top=top+i;
-        kareTop=kareTop+i*i;
-    }
-    printf("Fark:%d",top*top-kareTop);
+        kont=0;
+     for(j=1;j<20;j++)
+          {
+              if(i%j==0)
+                kont++;
+          }
+    if(kont==19)
+        {  printf("\nAranan:%d",i);
+           break;
+    }}
     return 0;
 }
