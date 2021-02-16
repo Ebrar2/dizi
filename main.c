@@ -1,27 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<math.h>
 int main()
 {
-    int d[150000],x,i,say=0;
-    int top=0;
-    d[0]=1;
-    for(i=500;i<15000;i++)
-    {
-        top=0;
-        for(x=1;x<=i+1;x++)
-            top=top+x;
-      d[i]=top;
-    }
-    for(i=500;i<14000;i++)
-    {
-           say=0;
-      for(x=1;x<=d[i]/2;x++)
-          if(d[i]%x==0)
-            say++;
-    if(say>=500)
-        {printf("\nAranan(d[%d])sayi:%d sayac:%d",i,d[i],say);
-           break;
-    }}
+   unsigned long int i,top=17,x,kont=0;
+   for(i=11;i<2000000;i+=2)
+   {
+        for(x=2;x<=i/2;x++)
+  {
+      if(i%x==0)
+       {
+        kont++;
+        break;}
+  }
+   if(kont==0)
+        top=top+i;
+   kont=0;
+  if(i>1000000)
+     printf("top:%ld",top);
+   }
+
     return 0;
 }
