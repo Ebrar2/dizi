@@ -1,35 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<time.h>
 int main()
 {
-    int pey[5][4],i,j,top=0,enb,enbuyuk=0;
-    printf("Kanaldaki peynir miktarlarini giriniz\n");
-    for(i=0;i<5;i++)
+    char tarla[8][8];
+    int i,j,sa,su;
+    for(i=0;i<8;i++)
     {
-        printf("%d.Kanal(1.bolumden 4.bolume dogru):",i+1);
-        for(j=0;j<4;j++)
-            scanf("%d",&pey[i][j]);
+        for(j=0;j<8;j++)
+            tarla[i][j]='-';
+
+    }
+    int say=0;
+    srand(time(NULL));
+    while(say<9)
+    {
+      sa=rand()%8;
+      su=rand()%8;
+         if(tarla[sa][su]=='-')
+        {
+            tarla[sa][su]='*';
+            say++;
+        }
+
+    }
+     for(i=0;i<8;i++)
+    {
+        for(j=0;j<8;j++)
+            printf("%c",tarla[i][j]);
       printf("\n");
     }
-    for(i=0;i<5;i++)
-    {
-        top=0;
-        for(j=0;j<4;j++)
-            top=top+pey[i][j];
-      if(top>enbuyuk)
-       {
-           enb=i;
-           enbuyuk=top;
-       }
-    }
-    top=0;
-    j=0;
-    while(top<=5)
-    {
-        top=top+pey[enb][j];
-        j++;
-    }
-    printf("Kanal faresi %d.Kanalin %d.Bolgesinde uykuya daldi",enb+1,j);
+
+
     return 0;
 }
