@@ -1,27 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-int palindromMu(int a);
+int asalMi(int i);
 int main()
 {
-    int i,j,kont=101;
-    for(i=100;i<1000;i++)
+    int i,kont;
+    for(i=3;i<600851475143/2;i++)
     {
-        for(j=100;j<1000;j++)
-            if(palindromMu(i*j)==i*j)
-                if(i*j>kont)
-                    kont=i*j;
-    }
-    printf("\nEn buyuk palindrom:%d",kont);
+        if(asalMi(i)==0)
+        {
+            if(600851475143%i==0)
+             {
+                kont=i;
+               printf("\nkont:%d",kont);}
+
+        }}
+
+    printf("\nAranan:%d",kont);
     return 0;
 }
-int palindromMu(int a)
+int asalMi(int i)
 {
-    int x,tersi=0;
-    while(a!=0)
+    int kont=0,x;
+    for(x=2;x<=i/2;x++)
     {
-        x=a%10;
-        tersi=tersi*10+x;
-        a=a/10;
+        if(i%x==0)
+            kont++;
     }
-    return tersi;
+    if(kont==0)
+        return 0;
+    else
+        return 1;
 }
