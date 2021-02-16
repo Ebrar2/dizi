@@ -3,46 +3,41 @@
 
 int main()
 {
-    int d[10],i,say=1,j,gec,gec2;
-    int a[10];
-    printf("Dizinin elemanlarini giriniz:\n");
-    for(i=0;i<10;i++)
-        scanf("%d",&d[i]);
-    for(i=0;i<10;i++)
-    {
-       say=1;
-       for(j=0;j<10;j++)
+   int d[4][3],i,j,x=0,gec;
+   int a[12];
+   printf("Dizinin sirasiz hali\n");
+   for(i=0;i<4;i++)
+   {
+       printf("%d.satiri giriniz:",i+1);
+       for(j=0;j<3;j++)
+         {scanf("%d",&d[i][j]);
+           a[x]=d[i][j];
+           x++;}
+    printf("\n");
+   }
+   for(i=1;i<12;i++)
+   {
+       for(j=0;j<11;j++)
+         if(a[j]>a[j+1])
        {
-           if(j!=i)
-           {
-           if(d[i]==d[j])
-              say++;
-           }
+           gec=a[j+1];
+           a[j+1]=a[j];
+           a[j]=gec;
        }
-       a[i]=say;
-    }
-    int b[10];
-    for(i=0;i<10;i++)
-        {
-        printf("%3d",a[i]);
-        b[i]=i;
-        }
-      for(i=0;i<10;i++)
-    {
-       for(j=0;j<9;j++)
-       {
-           if(a[j+1]<a[j])
-           {
-            gec=a[j];
-            a[j]=a[j+1];
-            a[j+1]=gec;
-            gec2=b[j+1];
-            b[j+1]=b[j];
-            b[j]=gec2;
-           }
-    }}
-    printf("\nDizinin siralanmis hali:\n");
-    for(i=0;i<10;i++)
-        printf("%3d",d[b[i]]);
+   }
+   x=0;
+   for(i=0;i<4;i++)
+   {
+       for(j=0;j<3;j++)
+         {d[i][j]=a[x];
+         x++;
+   }}
+   printf("\nDizinin siralanmis hali:\n");
+   for(i=0;i<4;i++)
+   {
+       for(j=0;j<3;j++)
+         printf("%3d",d[i][j]);
+    printf("\n");
+   }
     return 0;
 }
