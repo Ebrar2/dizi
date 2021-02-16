@@ -3,32 +3,25 @@
 
 int main()
 {
-    int d[10][10],i,j,enk;
-    int x=0,y=0;
-    printf("Arazinin parsel derinliklerini giriniz:\n");
-    for(i=0;i<10;i++)
+    int d[6][6],i,j,say=0;
+    for(i=0;i<6;i++)
     {
-        printf("%d.sat:",i);
-        for(j=0;j<10;j++)
+        printf("%d.sehrin tum sehirlere mesafelerini giriniz:",i+1);
+          for(j=0;j<6;j++)
             scanf("%d",&d[i][j]);
-      printf("\n");
+       printf("\n");
     }
-    enk=d[0][0]+d[0][1]+d[1][0]+d[1][1];
-    for(i=0;i<9;i++)
+    for(i=0;i<6;i++)
     {
-        for(j=0;j<9;j++)
+        for(j=0;j<6;j++)
         {
-            if(enk>(d[i][j]+d[i][j+1]+d[i+1][j]+d[i+1][j+1]))
-            {
-                enk=d[i][j]+d[i][j+1]+d[i+1][j]+d[i+1][j+1];
-                x=i;
-                y=j;
-                printf("\nx:%d y:%d",x,y);
-            }
+            if(d[i][j]!=d[j][i])
+                {printf("%d-",i+1);
+                 say++;}
         }
     }
-    printf("\nSonuc:");
-    printf("\nEvin yapilacagi parsellerin satir ve sutun numaralari:\n");
-    printf("\n%d-%d,%d-%d,%d-%d,%d-%d",x+1,y,x+2,y+1,x+1,y+2,x+2,y+2);
+
+
+    printf("\n%d adet uzaklik farkli girilmistir",say-say/2);
     return 0;
 }
