@@ -3,31 +3,33 @@
 
 int main()
 {
-    int a[3][3],i,j,top=0;
-
-    for(i=0;i<3;i++)
+    int pey[5][4],i,j,top=0,enb,enbuyuk=0;
+    printf("Kanaldaki peynir miktarlarini giriniz\n");
+    for(i=0;i<5;i++)
     {
-        printf("%d.sira elemanlari:",i+1);
-        for(j=0;j<3;j++)
-            scanf("%d",&a[i][j]);
+        printf("%d.Kanal(1.bolumden 4.bolume dogru):",i+1);
+        for(j=0;j<4;j++)
+            scanf("%d",&pey[i][j]);
       printf("\n");
     }
-    int say=0;
-    for(i=0;i<3;i++)
+    for(i=0;i<5;i++)
     {
-        for(j=0;j<3;j++)
-        {    if(j+i==2)
-                top=top+a[i][j];
-            else if(i==j)
-            {
-            if(i==1 && j==1 && say<1)
-                {
-                    say++;
-                    top=top+a[i][j];
-                }
-            else
-                top=top+a[i][j];
-    }}}
-    printf("\nTop:%d",top);
+        top=0;
+        for(j=0;j<4;j++)
+            top=top+pey[i][j];
+      if(top>enbuyuk)
+       {
+           enb=i;
+           enbuyuk=top;
+       }
+    }
+    top=0;
+    j=0;
+    while(top<=5)
+    {
+        top=top+pey[enb][j];
+        j++;
+    }
+    printf("Kanal faresi %d.Kanalin %d.Bolgesinde uykuya daldi",enb+1,j);
     return 0;
 }
