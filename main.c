@@ -3,19 +3,12 @@
 
 int main()
 {
-    long int top=0,d[50000];
-    int i;
-    d[0]=1;
-    d[1]=1;
-    for(i=2; ;i++)
+    int i,top=0;
+    for(i=0;i<1000;i++)
     {
-        d[i]=d[i-1]+d[i-2];
-        if(d[i]%2==0)
-            top=top+d[i];
-        if(d[i]>4000000)
-            break;
+        if(i%3==0 || i%5==0)
+            top=top+i;
     }
-    printf("TOP:%d",top);
-
+    printf("Top:%d",top);
     return 0;
 }
