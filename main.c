@@ -1,78 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 4
-#define M 4
-void diziBol(int d[][M],int x);
+
 int main()
 {
-    int d[N][M],i,j;
-    for(i=0;i<N;i++)
+    int d[5][3],i,j,top,say=0,a[5];
+    for(i=0;i<5;i++)
     {
-        printf("%d.satiri giriniz:",i+1);
-         for(j=0;j<M;j++)
-         scanf("%d",&d[i][j]);
+        top=0;
+        printf("%d.ogrencinin notlari:",i+1);
+         for(j=0;j<3;j++)
+            {scanf("%d",&d[i][j]);
+              top=top+d[i][j];}
+         a[i]=top;
         printf("\n");
     }
-    printf("\n------------------------------------------\n");
-    printf("Sol ucgen:");
-    diziBol(d,1);
-    printf("\n------------------------------------------\n");
-    printf("Sag ucgen:");
-    diziBol(d,0);
+    printf("\nKalinan dersler:\n");
+    for(i=0;i<5;i++)
+    {
+        printf("%d.ogrencinin kaldigi ders sayisi:",i+1);
+        say=0;
+         for(j=0;j<3;j++)
+         {
+             if(d[i][j]<=40)
+               say++;
+             else if(d[i][j]>40 && d[i][j]<60)
+             {
+                 if(a[i]/3<60)
+                    say++;
+             }
+         }
+        printf("%d\n",say);
+    }
+
+
     return 0;
-}
-void diziBol(int d[][M],int x)
-{
-    int i,j,say=0,b=0;
-    if(x==1)
-    {
-        for(i=0;i<N;i++)
-        {
-            for(j=0;j<M;j++)
-            {
-                if((i+j)<N-1)
-                        say++;
-
-
-            }
-        }
-
-        int a[say];
-        for(i=0;i<N;i++)
-        {
-            for(j=0;j<M;j++)
-            {
-                if((i+j)<N-1)
-                   {a[b]=d[i][j];
-                   b++;
-            }
-        }}
-        for(i=0;i<say;i++)
-            printf("%3d",a[i]);
-    }
-   else  if(x==0)
-    {
-        for(i=0;i<N;i++)
-        {
-            for(j=0;j<M;j++)
-            {
-                if((i+j)>N-1)
-                        say++;
-            }
-        }
-        int a[say];
-        for(i=0;i<N;i++)
-        {
-            for(j=0;j<M;j++)
-            {
-                if((i+j)>N-1)
-                   {a[b]=d[i][j];
-                   b++;
-            }
-        }}
-        for(i=0;i<say;i++)
-            printf("%3d",a[i]);
-    }
-    else
-        printf("\nHatali x degeri!");
 }
