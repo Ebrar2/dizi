@@ -1,22 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+int palindromMu(int a);
 int main()
 {
-    int i,x=1,j,kont=0;
-    for(i=1;i<20;i++)
-        x=x*i;
-    for(i=x; ;i++)
+    int i,j,kont=101;
+    for(i=100;i<1000;i++)
     {
-        kont=0;
-     for(j=1;j<20;j++)
-          {
-              if(i%j==0)
-                kont++;
-          }
-    if(kont==19)
-        {  printf("\nAranan:%d",i);
-           break;
-    }}
+        for(j=100;j<1000;j++)
+            if(palindromMu(i*j)==i*j)
+                if(i*j>kont)
+                    kont=i*j;
+    }
+    printf("\nEn buyuk palindrom:%d",kont);
     return 0;
+}
+int palindromMu(int a)
+{
+    int x,tersi=0;
+    while(a!=0)
+    {
+        x=a%10;
+        tersi=tersi*10+x;
+        a=a/10;
+    }
+    return tersi;
 }
