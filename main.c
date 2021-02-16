@@ -3,50 +3,32 @@
 
 int main()
 {
-    int d[6][5]={0},x,y,i=0,j;
-    printf("Robotu konumunu giriniz:");
-    scanf("%d%d",&x,&y);
-    d[x][y]=1;
-    printf("\n-----------------------------------------------------\n");
-    printf("(1:sag,2:sol,3:asagi,4:yukari");
-    printf("\nKomutlarinizi giriniz:");
-    do
-    {
-        scanf("%d",&i);
-        if(i==1)
-        {
-            if(y+1<5)
-                {d[x][y+1]=1;
-                y++;}
-            }
-        else if(i==2)
-        {
-            if(y-1>-1)
-            {
-            d[x][y-1]=1;
-             y--;
-            }}
-        else if(i==3)
-        {
-            if(x+1<6)
-              {d[x+1][y]=1;
-               x++;
-        }}
-        else if(i==4)
-        {
-            if(x-1>-1)
-            {   d[x-1][y]=1;
-                x--;
-        }}
-    }while(i!=0);
-    printf("\n------------------------------------------------------------\n");
-    printf("\nRobotu rotasi:\n");
-    for(i=0;i<6;i++)
+    int d[10][10],i,j,enk;
+    int x=0,y=0;
+    printf("Arazinin parsel derinliklerini giriniz:\n");
+    for(i=0;i<10;i++)
     {
         printf("%d.sat:",i);
-         for(j=0;j<5;j++)
-            printf("%3d",d[i][j]);
-       printf("\n");
+        for(j=0;j<10;j++)
+            scanf("%d",&d[i][j]);
+      printf("\n");
     }
+    enk=d[0][0]+d[0][1]+d[1][0]+d[1][1];
+    for(i=0;i<9;i++)
+    {
+        for(j=0;j<9;j++)
+        {
+            if(enk>(d[i][j]+d[i][j+1]+d[i+1][j]+d[i+1][j+1]))
+            {
+                enk=d[i][j]+d[i][j+1]+d[i+1][j]+d[i+1][j+1];
+                x=i;
+                y=j;
+                printf("\nx:%d y:%d",x,y);
+            }
+        }
+    }
+    printf("\nSonuc:");
+    printf("\nEvin yapilacagi parsellerin satir ve sutun numaralari:\n");
+    printf("\n%d-%d,%d-%d,%d-%d,%d-%d",x+1,y,x+2,y+1,x+1,y+2,x+2,y+2);
     return 0;
 }
