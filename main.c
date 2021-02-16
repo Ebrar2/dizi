@@ -1,48 +1,66 @@
 #include <stdio.h>
 #include <stdlib.h>
-int basamakSayi(int i);
+#include<math.h>
+int asalMi(int i);
+int basamakS(int x);
 int main()
 {
-    int i,gec,rak,basamak,n,kont1,kont2,sicrayan=0;
-    for(i=1;;i++)
+    int i,kont,k=0,z,y,say=0;
+    int f[5]={3,7,109,673,0};
+    for(i=674;;i++)
     {
-        kont1=0;
-        kont2=0;
-        n=0;
-        gec=i;
-        basamak=basamakSayi(i);
-        int say[basamak];
-        while(gec!=0)
+        if(asalMi(i)==0)
         {
-            rak=gec%10;
-            say[n]=rak;
-            gec=gec/10;
-            n++;
+            for(k=0;k<4;k++)
+            {
+                kont=basamakS(f[k]);
+                z=f[k]+i*pow(10,kont);
+                kont=basamakS(i);
+                y=f[k]*pow(10,kont)+i;
+         //  printf("\ni:%d z:%d y:%d",i,z,y);
+        //  printf("\nasalmi(z):%d asalmi(y):%d ,i:%d",asalMi(z),asalMi(y),i);
+                if(asalMi(z)==0 && asalMi(y)==0)
+                   say++;
         }
-        for(int j=0;j<n-1;j++)
+       // printf("\nsay:%d i:%d",say,i);
+        if(say==4)
         {
-            if(say[j]<=say[j+1])
-                kont1++;
-            else if(say[j]>=say[j+1])
-                kont2++;
-        }
-        if(kont1!=n-1 && kont2!=n-1)
-               sicrayan++;
-
-        if(sicrayan*100/i==99)
-        {
-            printf("\nSicrayan:%d",i);
-            break;
+        f[4]=i;
+        break;
         }
     }
+      say=0;
+      }
+    int top=0;
+    for(i=0;i<5;i++)
+        top=top+f[i];
+    printf("Top:%d f[5]:%d",top,f[4]);
+    printf("\nASAlMi:%d,%d,%d,%d",asalMi(8233),asalMi(8237),asalMi(823109),asalMi(823673));
+    printf("\nASAlMi:%d,%d,%d,%d",asalMi(3823),asalMi(7823),asalMi(109823),asalMi(673823));
+
+    return 0;
 }
-int basamakSayi(int i)
+int asalMi(int i)
 {
-    int kont=0;
-    while(i!=0)
+       int kont=0,j;
+        for(j=2;j<=i/2;j++)
         {
-            kont++;
-            i=i/10;
+            if(i%j==0)
+              kont++;
+
         }
-        return kont;
+        if(kont==0)
+              return 0;
+        else
+            return 1;
+}
+int basamakS(int x)
+{
+   int kont=0;
+    while(x!=0)
+    {
+        x=x/10;
+        kont++;
+    }
+    return kont;
 }
