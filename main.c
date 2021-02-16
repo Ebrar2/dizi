@@ -1,41 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<time.h>
+#define n 4
+#define m 4
+#define MAYINSAYISI 6
+void yerlestir(int tahta[][m]);
 int main()
 {
-   int n,i,j,k,gec,gec2;
-   printf("Eleman sayisini giriniz:");
-   scanf("%d",&n);
-   int a[n][2];
-   for(i=0;i<n;i++)
-   {
-       printf("%d.esyanin kodu ve sayisi:",i+1);
-       for(j=0;j<2;j++)
-         scanf("%d",&a[i][j]);
-   }
-     for(j=0;j<n;j++)
+    int tahta[n][m]={0};
+    int i,j;
+    yerlestir(tahta);
+    for(i=0;i<n;i++)
     {
-        for(k=j+1;k<n;k++)
-             if(a[j][1]<a[k][1])
-              {
-                gec=a[k][1];
-                a[k][1]=a[j][1];
-                a[j][1]=gec;
-                gec2=a[j][0];
-                a[j][0]=a[k][0];
-                a[k][0]=gec2;
-            }
-          }
-    printf("\nEsyalarin sirali hali\n");
-    for(j=0;j<n;j++)
+        for(j=0;j<m;j++)
+            printf("%3d",tahta[i][j]);
+        printf("\n");
+    }
+    return 0;
+}
+void yerlestir(int tahta[][m])
+{
+    int x,y,z;
+    srand(time(NULL));
+    for(x=0;x<MAYINSAYISI;x++)
     {
-        printf("\nKodlar:");
-        for(i=0;i<2;i++)
-          printf("%3d",a[j][i]);
-
-     printf("\n");
-
+        y=rand()%n;
+        z=rand()%m;
+       if(tahta[y][z]==0)
+        tahta[y][z]=1;
+       else
+        x--;
     }
 
-    return 0;
 }
