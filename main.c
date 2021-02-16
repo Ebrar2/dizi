@@ -3,49 +3,38 @@
 
 int main()
 {
-    int a[8][8],x,i,j,y,kont=0;
-    printf("Atin konumunu giriniz(Once satir sonra sutun):");
-    scanf("%d%d",&x,&y);
-    for(i=0;i<8;i++)
+    int a[3][3],i,j,elde=0,elde2=0,top=0,top2=0;
+    int d[3];
+
+    for(i=0;i<3;i++)
     {
-        for(j=0;j<8;j++)
-        {
-            if(x==i && y==j)
-                a[i][j]='A';
-            else
-                a[i][j]='-';
-        }
+        printf("a dizisinin %d.satiri:",i);
+         for(j=0;j<3;j++)
+           scanf("%d",&a[i][j]);
+      printf("\n");
     }
-    int sat[4]={x+1,x+2,x-1,x-2};
-    int sut[4]={y+1,y+2,y-1,y-2};
-    while(kont<9)
+    for(i=0;i<3;i++)
     {
-       for(i=0;i<4;i++)
+        top=0;
+        top2=0;
+        for(j=0;j<3;j++)
         {
-            if(i%2==0)
-        {
-            for(j=1;j<4;j+=2)
-                if((sat[j]>-1 && sat[j]<8) &&(sut[j]>-1 && sut[j]<8))
-            {
+            printf("%2d",a[i][j]);
+            top=a[i][j]+top;
+            if(j+i==2)
+                top2=top2+a[i][j];
 
-                 a[sat[i]][sut[j]]='*';
-                 kont++;
-        }}
-        else
-          {
-            for(j=0;j<4;j+=2)
-                if((sat[j]>0 && sat[j]<8) &&(sut[j]>0 && sut[j]<8))
-            {
-                        a[sat[i]][sut[j]]='*';
-                kont++;
         }
-    }}}
-    for(i=0;i<8;i++)
-{
-        for(j=0;j<8;j++)
-            printf("%c",a[i][j]);
-
+        top=top+elde;
+        printf("%2d",top%10);
+        elde=elde/10;
+        top2=top2+elde2;
+        d[2-i]=top%10;
+        elde2=elde2/10;
     printf("\n");
     }
+    printf("\n---------------------------------------\n");
+    for(i=0;i<3;i++)
+        printf("%2d",d[i]);
     return 0;
 }
