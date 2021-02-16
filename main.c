@@ -3,38 +3,39 @@
 
 int main()
 {
-    int a[3][3],i,j,elde=0,elde2=0,top=0,top2=0;
-    int d[3];
-
-    for(i=0;i<3;i++)
+   int n,i,j,k,gec,gec2;
+   printf("Eleman sayisini giriniz:");
+   scanf("%d",&n);
+   int a[n][2];
+   for(i=0;i<n;i++)
+   {
+       printf("%d.esyanin kodu ve sayisi:",i+1);
+       for(j=0;j<2;j++)
+         scanf("%d",&a[i][j]);
+   }
+     for(j=0;j<n;j++)
     {
-        printf("a dizisinin %d.satiri:",i);
-         for(j=0;j<3;j++)
-           scanf("%d",&a[i][j]);
-      printf("\n");
-    }
-    for(i=0;i<3;i++)
+        for(k=j+1;k<n;k++)
+             if(a[j][1]<a[k][1])
+              {
+                gec=a[k][1];
+                a[k][1]=a[j][1];
+                a[j][1]=gec;
+                gec2=a[j][0];
+                a[j][0]=a[k][0];
+                a[k][0]=gec2;
+            }
+          }
+    printf("\nEsyalarin sirali hali\n");
+    for(j=0;j<n;j++)
     {
-        top=0;
-        top2=0;
-        for(j=0;j<3;j++)
-        {
-            printf("%2d",a[i][j]);
-            top=a[i][j]+top;
-            if(j+i==2)
-                top2=top2+a[i][j];
+        printf("\nKodlar:");
+        for(i=0;i<2;i++)
+          printf("%3d",a[j][i]);
 
-        }
-        top=top+elde;
-        printf("%2d",top%10);
-        elde=elde/10;
-        top2=top2+elde2;
-        d[2-i]=top%10;
-        elde2=elde2/10;
-    printf("\n");
+     printf("\n");
+
     }
-    printf("\n---------------------------------------\n");
-    for(i=0;i<3;i++)
-        printf("%2d",d[i]);
+
     return 0;
 }
