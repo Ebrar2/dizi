@@ -3,25 +3,47 @@
 
 int main()
 {
-    int d[6][6],i,j,say=0;
+    char d[6][5];
+    int i,j,k=65,a[10],gec,x,b[2];
+    for(j=0;j<5;j++)
+    {
+       for(i=0;i<6;i++)
+         {
+             if(i==4 && j==4)
+                d[i][j]='.';
+             else if(i==5 && j==4)
+                 d[i][j]='?';
+             else
+              {
+                d[i][j]=k;
+                k++;}
+
+    }}
     for(i=0;i<6;i++)
     {
-        printf("%d.sehrin tum sehirlere mesafelerini giriniz:",i+1);
-          for(j=0;j<6;j++)
-            scanf("%d",&d[i][j]);
-       printf("\n");
+        printf("%d.satir:",i+1);
+          for(j=0;j<5;j++)
+             printf("%c",d[i][j]);
+      printf("\n");
     }
-    for(i=0;i<6;i++)
+    printf("\nSifreli mesajin sayilarini giriniz:\n");
+    for(i=0;i<10;i++)
+        scanf("%d",&a[i]);
+    printf("\n--------------------------------------------\n");
+      int z=0;
+    for(i=0;i<10;i++)
     {
-        for(j=0;j<6;j++)
+        gec=a[i];
+        z=0;
+        while(gec!=0)
         {
-            if(d[i][j]!=d[j][i])
-                {printf("%d-",i+1);
-                 say++;}
+
+            x=gec%10;
+            gec=gec/10;
+            b[z]=x;
+            z++;
         }
+    printf("%c",d[b[1]+1][b[0]+1]);
     }
-
-
-    printf("\n%d adet uzaklik farkli girilmistir",say-say/2);
     return 0;
 }
