@@ -1,26 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<math.h>
 int main()
 {
-    int i,j,n;
-    printf("Ne kadarlik gireceksiniz:");
-    scanf("%d",&n);
-    int d[2*n-2];
-    for(i=0;i<n;i++)
+    int say,i=0,k=0;
+    printf("Hangi sayinin logaritmasini bulmak istiyorsun:");
+    scanf("%d",&say);
+    while(say>pow(2,i))
     {
-        for(j=0;j<n;j++)
+        if(say==pow(2,i))
+            k=pow(2,i);
+       else if(say>pow(2,i))
         {
-          if((i==0 && j==0) || (i==0 && j==1) || (i==1 && j==0))
-          { d[j]=1;
-           printf("%6d",d[j]);
+            while(say>=pow(2,k))
+                k++;
         }
-        else
-        {
-          d[j+i]=d[j+i-1]+d[j+i-2];
-           printf("%6d",d[j+i]);
-        }}
-     printf("\n");
-      }
+        i++;
+    }
+    printf("\nLog cevabi:%d",k-1);
     return 0;
 }
