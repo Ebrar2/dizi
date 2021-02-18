@@ -1,45 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<math.h>
+
 int main()
 {
-    int x,i;
-    int basamak=0,bas=0,son=0,gec=0,kont=0,say=0;
-    for(i=110;i<100000;i++)
+    int i,j,n;
+    printf("Ne kadarlik gireceksiniz:");
+    scanf("%d",&n);
+    int d[2*n-2];
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
         {
-         gec=i;
-         bas=i;
-         while(gec!=0)
-         {
-             basamak++;
-             x=gec%10;
-             gec=gec/10;
-         }
-         while(kont<basamak/2)
-         {
-             x=bas%10;
-             son=son*10+x;
-             bas=bas/10;
-             kont++;
-         }
-         if(basamak%2==0)
-         {
-             if(bas==son)
-              {if(i%109==0)
-                say++;
-         }}
-         else
-         {
-             if(son==(bas/10))
-             {
-                 if(i%109==0)
-                 say++;
-             }
-         }
-          kont=0;
-         basamak=0;
-         son=0;
+          if((i==0 && j==0) || (i==0 && j==1) || (i==1 && j==0))
+          { d[j]=1;
+           printf("%6d",d[j]);
         }
-        printf("%d tane",say);
+        else
+        {
+          d[j+i]=d[j+i-1]+d[j+i-2];
+           printf("%6d",d[j+i]);
+        }}
+     printf("\n");
+      }
     return 0;
 }
