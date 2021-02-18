@@ -1,29 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<math.h>
 int main()
 {
-    int i=100,j,x,kont=0,carp=1;
-    while(i>=100)
-    {
-        printf("\nSayiyi giriniz:");
-        scanf("%d",&i);
-        if(i>100)
-            printf("Yanlis!Lutfen 2 basamakli sayi giriniz:");
-    }
-    while(i>9)
-    {
-        kont++;
+    int i,x,j,kont=0,say1=0,top;
+    printf("\nIlginc sayilar:");
+    for(i=1000;i<pow(10,4);i++)
+       {
         j=i;
-        carp=1;
-        while(j!=0)
+        while(kont!=2)
         {
             x=j%10;
-            carp=carp*x;
+            say1=say1+x*pow(10,kont);
             j=j/10;
+            kont++;
         }
-        i=carp;
-    }
-    printf("\nCarpim direnci:%d",kont);
+        top=say1+j;
+        if(pow(top,2)==i)
+            printf("\n%d,",i);
+     kont=0;
+     say1=0;
+       }
     return 0;
 }
