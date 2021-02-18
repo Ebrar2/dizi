@@ -1,33 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<time.h>
+void sirala(int d[],int n);
 int main()
 {
-    int a[5],b[5],i,j,kont=0;
-    printf("a dizisinin elemanlarini(5) giriniz:");
-    for(i=0;i<5;i++)
-        scanf("%d",&a[i]);
-    printf("\nb dizisinin elemanlarini(5) giriniz:");
-    for(i=0;i<5;i++)
-        scanf("%d",&b[i]);
-    printf("\nOrtak elemanlar:");
-    for(i=0;i<5;i++)
-    {
-        for(j=i+1;j<5;j++)
-            if(a[i]==a[j])
-            a[i]=-1;
-    }
-    for(i=0;i<5;i++)
-     {
-         kont=0;
-        for(j=0;j<5;j++)
-        {
-            if(a[i]==b[j])
-             kont++;
-     }
-      if(kont!=0)
-          printf("%d,",a[i]);
-     }
+    int n=10,i,d[n];
+    printf("Rastgele olusan dizi:");
+    for(i=0;i<n;i++)
+       { d[i]=1+rand()%100;
+         printf("%d,",d[i]);}
+    sirala(d,n);
+    printf("\nDizinin siralanmis hali:");
+    for(i=0;i<n;i++)
+        printf("%d,",d[i]);
     return 0;
-
+}
+void sirala(int d[],int n)
+{
+   int gec,i,j;
+   for(i=1;i<n;i++)
+   {
+       for(j=0;j<n-1;j++)
+       {
+           if(d[j]>d[j+1])
+           {
+               gec=d[j+1];
+               d[j+1]=d[j];
+               d[j]=gec;
+           }
+       }
+   }
 }
