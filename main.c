@@ -1,23 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-float fahrCev(float x);
-float canCev(float y);
+
 int main()
 {
-    float f,c;
-    printf("%.2f",fahrCev(0));
-    printf("\n%.2f",canCev(0));
+    int a[5],b[5],i,j,kont=0;
+    printf("a dizisinin elemanlarini(5) giriniz:");
+    for(i=0;i<5;i++)
+        scanf("%d",&a[i]);
+    printf("\nb dizisinin elemanlarini(5) giriniz:");
+    for(i=0;i<5;i++)
+        scanf("%d",&b[i]);
+    printf("\nOrtak elemanlar:");
+    for(i=0;i<5;i++)
+    {
+        for(j=i+1;j<5;j++)
+            if(a[i]==a[j])
+            a[i]=-1;
+    }
+    for(i=0;i<5;i++)
+     {
+         kont=0;
+        for(j=0;j<5;j++)
+        {
+            if(a[i]==b[j])
+             kont++;
+     }
+      if(kont!=0)
+          printf("%d,",a[i]);
+     }
     return 0;
-}
-float fahrCev(float x)
-{
-    float fah;
-    fah=(x*180/100)+32;
-    return fah;
-}
-float canCev(float y)
-{
-    float can;
-    can=((y-32)/180)*100;
-    return can;
+
 }
