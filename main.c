@@ -1,33 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
-void sirala(int d[],int n);
+#include<math.h>
+#define N 20
+int atamaVarmi(char d[][N],int x,int y);
 int main()
 {
-    int n=10,i,d[n];
-    printf("Rastgele olusan dizi:");
-    for(i=0;i<n;i++)
-       { d[i]=1+rand()%100;
-         printf("%d,",d[i]);}
-    sirala(d,n);
-    printf("\nDizinin siralanmis hali:");
-    for(i=0;i<n;i++)
-        printf("%d,",d[i]);
+    int i,j,say=0,x,y;
+    char d[N][N];
+    for(i=0;i<N;i++)
+        {for(j=0;j<N;j++)
+           d[i][j]='-';}
+    srand(time(NULL));
+    while(say<10)
+     {
+         x=rand()%20;
+         y=rand()%20;
+         if(say==0)
+         {
+             d[x][y]='V';
+             say++;
+         }
+         else
+         {
+             if(atamaVarmi(d,x,y)!=0)
+             {d[x][y]='V';
+             say++;
+         }
+    }}
+    for(i=0;i<N;i++)
+    {
+        for(j=0;j<N;j++)
+            printf("%c",d[i][j]);
+        printf("\n");
+    }
     return 0;
 }
-void sirala(int d[],int n)
+int atamaVarmi(char d[][N],int x,int y)
 {
-   int gec,i,j;
-   for(i=1;i<n;i++)
-   {
-       for(j=0;j<n-1;j++)
-       {
-           if(d[j]>d[j+1])
-           {
-               gec=d[j+1];
-               d[j+1]=d[j];
-               d[j]=gec;
-           }
-       }
-   }
+    int i,j,say=0,fark1,fark2;
+    for(i=0;i<N;i++)
+    {
+        for(j=0;j<N;j++)
+        {
+            if(d[i][j]=='V')
+            {
+                fark1=abs(i-j);
+                fark2=abs(x-y);
+                if(x!=i && y!=j)
+             {
+                    if(fark1==fark2 && i<j && x>y)
+                      say++;
+                    else if(fark1==fark2 && i>j && x<y)
+                        say++;
+                    else if(fark1==fark2 && i>j && x>y)
+                        return 0;
+                    else if(fark1==fark2 && i<j && x<y)
+                        return 0;
+             }
+                else
+                     return 0;
+
+        }
+        }
+    }
+    if(say!=0)
+        return 1;
 }
