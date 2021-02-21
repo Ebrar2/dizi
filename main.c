@@ -1,103 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include<time.h>
+int n;
+#define N n
+void satirOrtalamaBul(int d[][N],int n,float a[]);
+void listele(int d[][N],int n);
 int main()
 {
-    char d[3][3]={};
-    int say=0,i,j;
-    while(1)
-    {
-        say++;
-        printf("\nX olan oyuncunun sirasi(satir,sutun):");
-        scanf("%d%d",&i,&j);
-        d[i][j]='X';
-        if(say>=5)
-        {
-            if(i==2 && d[i][j]=='X' && d[i-1][j]=='X' && d[i-2][j]=='X')
-                {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                break;}
-            else if(i==0 && d[i][j]=='X' && d[i+1][j]=='X' && d[i+2][j]=='X')
-                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-            else if(i==1 && d[i][j]=='X' && d[i+1][j]=='X' && d[i-1][j]=='X')
-                  {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-            else if(j==0 && d[i][j]=='X' && d[i][j+1]=='X' && d[i][j+2]=='X')
-                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-            else if(j==2 && d[i][j]=='X' && d[i][j-1]=='X' && d[i][j-2]=='X')
-               {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-            else if(j==1 && d[i][j]=='X' && d[i][j+1]=='X' && d[i][j-1]=='X')
-                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-            else if(i==j && d[i][j]=='X' && d[i+1][j+1]=='X' && d[i+2][j+2]=='X')
-                  {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-             else if(i==j && d[i][j]=='X' && d[i-1][j-1]=='X' && d[i-2][j-2]=='X')
-                  {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-             else if(i==j && d[i][j]=='X' && d[i+1][j+1]=='X' && d[i-1][j-1]=='X')
-                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
-                 break;}
-            else if(say==9)
-                break;
-        }
-        for(i=0;i<3;i++)
-        {
-            for(j=0;j<3;j++)
-                printf("%c",d[i][j]);
-        printf("\n");
-        }
-        printf("\nO olan oyuncunun sirasi(satir,sutun):");
-        scanf("%d%d",&i,&j);
-        say++;
-        d[i][j]='O';
-        if(say!=9 && say>=6)
-        {
-            if(i==2 && d[i][j]=='O' && d[i-1][j]=='O' && d[i-2][j]=='O')
-                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-            else if(i==0 && d[i][j]=='O' && d[i+1][j]=='O' && d[i+2][j]=='O')
-                   {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-            else if(i==1 && d[i][j]=='O' && d[i+1][j]=='O' && d[i-1][j]=='O')
-                   {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-            else if(j==0 && d[i][j]=='O' && d[i][j+1]=='O' && d[i][j+2]=='O')
-                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-            else if(j==2 && d[i][j]=='O' && d[i][j-1]=='O' && d[i][j-2]=='O')
-                 {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-            else if(j==1 && d[i][j]=='O' && d[i][j+1]=='O' && d[i][j-1]=='O')
-                 {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-            else if(i==j && d[i][j]=='O' && d[i+1][j+1]=='O' && d[i+2][j+2]=='O')
-                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-             else if(i==j && d[i][j]=='O' && d[i-1][j-1]=='O' && d[i-2][j-2]=='O')
-                   {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-             else if(i==j && d[i][j]=='O' && d[i+1][j+1]=='O' && d[i-1][j-1]=='O')
-                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
-                 break;}
-        }
-        printf("\n");
-        for(i=0;i<3;i++)
-        {
-            for(j=0;j<3;j++)
-                printf("%c",d[i][j]);
-        printf("\n");}
-    }
-    if(say==9)
-        printf("\nBerabere");
-    printf("\n------------------------------------\n");
-    for(i=0;i<3;i++)
-        {
-            for(j=0;j<3;j++)
-                printf("%c",d[i][j]);
-        printf("\n");
-        }
+   int i,j;
+   printf("Kare matrisin boyutunu giriniz:");
+   scanf("%d",&n);
+   int d[n][n];
+   float a[n];
+   srand(time(NULL));
+   for(i=0;i<n;i++)
+   {
+       for(j=0;j<n;j++)
+        d[i][j]=100+rand()%900;
+   }
+   listele(d,n);
+   satirOrtalamaBul(d,n,a);
+   printf("\n\n------------------------------\n");
+   for(i=0;i<n;i++)
+          printf("%.2f,",a[i]);
+
     return 0;
+}
+void listele(int d[][N],int n)
+{
+    int i,j;
+    printf("\n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+            printf("%3d,",d[i][j]);
+      printf("\n");
+    }
+}
+void satirOrtalamaBul(int d[][N],int n,float a[])
+{
+    int i,j;
+    float ort,top=0.0;
+    for(j=0;j<n;j++)
+    {
+        top=0.0;
+        for(i=0;i<n;i++)
+            top=top+d[i][j];
+     a[j]=top/n;
+    }
 }
