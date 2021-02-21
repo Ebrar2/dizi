@@ -1,69 +1,103 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
-#include<math.h>
-#define N 20
-int atamaVarmi(char d[][N],int x,int y);
+
 int main()
 {
-    int i,j,say=0,x,y;
-    char d[N][N];
-    for(i=0;i<N;i++)
-        {for(j=0;j<N;j++)
-           d[i][j]='-';}
-    srand(time(NULL));
-    while(say<10)
-     {
-         x=rand()%20;
-         y=rand()%20;
-         if(say==0)
-         {
-             d[x][y]='V';
-             say++;
-         }
-         else
-         {
-             if(atamaVarmi(d,x,y)!=0)
-             {d[x][y]='V';
-             say++;
-         }
-    }}
-    for(i=0;i<N;i++)
+    char d[3][3]={};
+    int say=0,i,j;
+    while(1)
     {
-        for(j=0;j<N;j++)
-            printf("%c",d[i][j]);
-        printf("\n");
-    }
-    return 0;
-}
-int atamaVarmi(char d[][N],int x,int y)
-{
-    int i,j,say=0,fark1,fark2;
-    for(i=0;i<N;i++)
-    {
-        for(j=0;j<N;j++)
+        say++;
+        printf("\nX olan oyuncunun sirasi(satir,sutun):");
+        scanf("%d%d",&i,&j);
+        d[i][j]='X';
+        if(say>=5)
         {
-            if(d[i][j]=='V')
-            {
-                fark1=abs(i-j);
-                fark2=abs(x-y);
-                if(x!=i && y!=j)
-             {
-                    if(fark1==fark2 && i<j && x>y)
-                      say++;
-                    else if(fark1==fark2 && i>j && x<y)
-                        say++;
-                    else if(fark1==fark2 && i>j && x>y)
-                        return 0;
-                    else if(fark1==fark2 && i<j && x<y)
-                        return 0;
-             }
-                else
-                     return 0;
-
+            if(i==2 && d[i][j]=='X' && d[i-1][j]=='X' && d[i-2][j]=='X')
+                {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                break;}
+            else if(i==0 && d[i][j]=='X' && d[i+1][j]=='X' && d[i+2][j]=='X')
+                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+            else if(i==1 && d[i][j]=='X' && d[i+1][j]=='X' && d[i-1][j]=='X')
+                  {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+            else if(j==0 && d[i][j]=='X' && d[i][j+1]=='X' && d[i][j+2]=='X')
+                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+            else if(j==2 && d[i][j]=='X' && d[i][j-1]=='X' && d[i][j-2]=='X')
+               {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+            else if(j==1 && d[i][j]=='X' && d[i][j+1]=='X' && d[i][j-1]=='X')
+                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+            else if(i==j && d[i][j]=='X' && d[i+1][j+1]=='X' && d[i+2][j+2]=='X')
+                  {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+             else if(i==j && d[i][j]=='X' && d[i-1][j-1]=='X' && d[i-2][j-2]=='X')
+                  {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+             else if(i==j && d[i][j]=='X' && d[i+1][j+1]=='X' && d[i-1][j-1]=='X')
+                 {printf("\nOyun bitti!1. oyuncu(X) kazandi");
+                 break;}
+            else if(say==9)
+                break;
         }
+        for(i=0;i<3;i++)
+        {
+            for(j=0;j<3;j++)
+                printf("%c",d[i][j]);
+        printf("\n");
         }
+        printf("\nO olan oyuncunun sirasi(satir,sutun):");
+        scanf("%d%d",&i,&j);
+        say++;
+        d[i][j]='O';
+        if(say!=9 && say>=6)
+        {
+            if(i==2 && d[i][j]=='O' && d[i-1][j]=='O' && d[i-2][j]=='O')
+                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+            else if(i==0 && d[i][j]=='O' && d[i+1][j]=='O' && d[i+2][j]=='O')
+                   {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+            else if(i==1 && d[i][j]=='O' && d[i+1][j]=='O' && d[i-1][j]=='O')
+                   {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+            else if(j==0 && d[i][j]=='O' && d[i][j+1]=='O' && d[i][j+2]=='O')
+                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+            else if(j==2 && d[i][j]=='O' && d[i][j-1]=='O' && d[i][j-2]=='O')
+                 {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+            else if(j==1 && d[i][j]=='O' && d[i][j+1]=='O' && d[i][j-1]=='O')
+                 {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+            else if(i==j && d[i][j]=='O' && d[i+1][j+1]=='O' && d[i+2][j+2]=='O')
+                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+             else if(i==j && d[i][j]=='O' && d[i-1][j-1]=='O' && d[i-2][j-2]=='O')
+                   {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+             else if(i==j && d[i][j]=='O' && d[i+1][j+1]=='O' && d[i-1][j-1]=='O')
+                  {printf("\nOyun bitti!2. oyuncu(O) kazandi");
+                 break;}
+        }
+        printf("\n");
+        for(i=0;i<3;i++)
+        {
+            for(j=0;j<3;j++)
+                printf("%c",d[i][j]);
+        printf("\n");}
     }
-    if(say!=0)
-        return 1;
+    if(say==9)
+        printf("\nBerabere");
+    printf("\n------------------------------------\n");
+    for(i=0;i<3;i++)
+        {
+            for(j=0;j<3;j++)
+                printf("%c",d[i][j]);
+        printf("\n");
+        }
+    return 0;
 }
